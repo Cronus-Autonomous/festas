@@ -1,27 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Reveal from './Reveal';
 
 const WA_NUMBER = '5511999999999';
 const WA_TEXT = encodeURIComponent('Olá! Vim pelo site da CASA VIVA e gostaria de conversar sobre um evento.');
 
 export default function FinalCTA() {
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
-  const [form, setForm] = useState({ nome: '', email: '', telefone: '', tipo: '', data: '' });
-
-  const update = (k) => (e) => setForm({ ...form, [k]: e.target.value });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!form.nome || !form.email || !form.telefone) {
-      setStatus('error');
-      return;
-    }
-    setStatus('loading');
-    // simulated lead capture
-    await new Promise((r) => setTimeout(r, 1100));
-    setStatus('success');
-  };
-
   return (
     <section className="relative bg-wine text-ink-inverse py-24 lg:py-36 overflow-hidden section-anchor" id="contato">
       {/* hollow arch cutting section vertically */}
@@ -38,7 +21,7 @@ export default function FinalCTA() {
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
         {/* Left text */}
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-7">
           <Reveal><p className="label-eyebrow text-gold mb-6">Vamos conversar</p></Reveal>
           <Reveal delay={0.05}>
             <h2 className="font-display fs-display text-ink-inverse" style={{ fontWeight: 350, letterSpacing: '-0.02em', fontSize: 'clamp(2.75rem, 6vw, 5.5rem)' }}>
@@ -46,99 +29,34 @@ export default function FinalCTA() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-8 max-w-md leading-relaxed" style={{ color: 'rgba(244,239,230,0.78)' }}>
+            <p className="mt-8 max-w-lg leading-relaxed text-lg" style={{ color: 'rgba(244,239,230,0.78)' }}>
               Conte a sua ideia. A gente volta com um lugar, um plano e um caminho para o seu dia acontecer do jeito que você imagina.
             </p>
           </Reveal>
         </div>
 
-        {/* Right form */}
-        <div className="lg:col-span-6">
-          {status === 'success' ? (
-            <div className="flex items-start gap-4 py-8">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--brand-gold)" strokeWidth="1.5" aria-hidden="true">
-                <path d="M5 14l6 6 12-13" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Right CTA Button */}
+        <div className="lg:col-span-5 flex lg:justify-end">
+          <Reveal delay={0.15}>
+            <a
+              href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-4 px-8 py-5 rounded-full text-white font-medium bg-[#25D366] hover:bg-[#20bd5a] transition-all transform hover:scale-105 shadow-xl"
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M18.403 5.638A8.955 8.955 0 0 0 12.053 3c-4.948 0-8.976 4.027-8.978 8.977 0 1.582.413 3.125 1.2 4.484L3 21l4.704-1.233a8.941 8.941 0 0 0 4.348 1.127h.004c4.947 0 8.976-4.027 8.978-8.977 0-2.398-.934-4.653-2.631-6.279zM12.053 19.42h-.003a7.458 7.458 0 0 1-3.799-1.042l-.272-.162-2.824.74.753-2.753-.177-.282a7.455 7.455 0 0 1-1.144-3.966c.002-4.118 3.352-7.468 7.47-7.468 1.994.001 3.869.778 5.277 2.188 1.408 1.41 2.184 3.285 2.183 5.281-.002 4.119-3.352 7.47-7.464 7.472zm4.097-5.593c-.225-.113-1.327-.655-1.533-.73-.205-.075-.354-.112-.504.113-.15.224-.58.73-.711.879-.131.15-.262.169-.487.056-.225-.113-.949-.35-1.808-1.115-.668-.595-1.12-1.33-1.251-1.555-.131-.225-.014-.347.098-.459.101-.101.225-.262.338-.393.113-.131.15-.225.225-.375.075-.15.038-.281-.019-.393-.056-.113-.504-1.217-.691-1.667-.182-.438-.367-.378-.504-.385-.13-.007-.28-.007-.431-.007-.15 0-.394.056-.6.281-.206.225-.787.769-.787 1.875 0 1.106.806 2.174.918 2.324.113.15 1.586 2.421 3.843 3.396.537.232.956.37 1.282.474.539.171 1.03.147 1.417.089.432-.064 1.327-.543 1.514-1.068.187-.525.187-.974.131-1.068-.056-.094-.206-.15-.431-.263z"
+                  fill="#FFFFFF"
+                />
               </svg>
-              <div>
-                <p className="font-display text-2xl text-ink-inverse" style={{ fontWeight: 400 }}>Recebemos.</p>
-                <p className="mt-2" style={{ color: 'rgba(244,239,230,0.7)' }}>Em breve entramos em contato pelo WhatsApp.</p>
-              </div>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-7" noValidate>
-              <Field label="Nome" id="nome">
-                <input id="nome" className="input-line" placeholder="Seu nome" value={form.nome} onChange={update('nome')} autoComplete="name" />
-              </Field>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
-                <Field label="E-mail" id="email">
-                  <input id="email" type="email" className="input-line" placeholder="vo@email.com" value={form.email} onChange={update('email')} autoComplete="email" />
-                </Field>
-                <Field label="Telefone / WhatsApp" id="telefone">
-                  <input id="telefone" className="input-line" placeholder="(11) 99999-9999" value={form.telefone} onChange={update('telefone')} autoComplete="tel" />
-                </Field>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
-                <Field label="Tipo de evento" id="tipo">
-                  <div className="relative">
-                    <select id="tipo" className="input-line appearance-none pr-6 cursor-pointer" value={form.tipo} onChange={update('tipo')}>
-                      <option value="" style={{ color: '#171512' }}>Selecione</option>
-                      <option style={{ color: '#171512' }}>Casamento</option>
-                      <option style={{ color: '#171512' }}>Aniversário</option>
-                      <option style={{ color: '#171512' }}>Formatura</option>
-                      <option style={{ color: '#171512' }}>Corporativo</option>
-                      <option style={{ color: '#171512' }}>Happy hour</option>
-                      <option style={{ color: '#171512' }}>Batizado</option>
-                      <option style={{ color: '#171512' }}>Outro</option>
-                    </select>
-                    <svg className="absolute right-0 bottom-3 w-3 h-3 pointer-events-none" style={{ color: 'rgba(244,239,230,0.5)' }} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M2 4l4 4 4-4" strokeLinecap="round" /></svg>
-                  </div>
-                </Field>
-                <Field label="Data aproximada" id="data">
-                  <input id="data" className="input-line" placeholder="mês / ano" value={form.data} onChange={update('data')} />
-                </Field>
-              </div>
-
-              {status === 'error' && (
-                <p className="text-sm" style={{ color: 'var(--brand-terracotta)' }}>Preencha nome, e-mail e telefone para enviarmos.</p>
-              )}
-
-              <div className="flex flex-wrap items-center gap-4 pt-4">
-                <button type="submit" className="btn-primary" disabled={status === 'loading'}>
-                  {status === 'loading' ? (
-                    <>
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="animate-spin" aria-hidden="true">
-                        <path d="M8 2a6 6 0 100 12" strokeLinecap="round" />
-                      </svg>
-                      Enviando
-                    </>
-                  ) : 'Enviar'}
-                </button>
-                <a href={`https://wa.me/${WA_NUMBER}?text=${WA_TEXT}`} target="_blank" rel="noopener noreferrer" className="btn-wa">
-                  <WaIcon />
-                  Falar no WhatsApp
-                </a>
-              </div>
-            </form>
-          )}
+              <span className="text-lg">Conversar no WhatsApp</span>
+            </a>
+          </Reveal>
         </div>
       </div>
     </section>
-  );
-}
-
-function Field({ label, id, children }) {
-  return (
-    <div className="relative">
-      <label htmlFor={id} className="label-eyebrow block mb-2" style={{ color: 'rgba(244,239,230,0.55)' }}>{label}</label>
-      {children}
-    </div>
-  );
-}
-
-function WaIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
-      <path d="M9 1.5a7.4 7.4 0 00-6.3 11.3L1.5 16.5l3.8-1.2A7.4 7.4 0 109 1.5zm0 13.4a6 6 0 01-3.1-.85l-.22-.13-2.25.72.74-2.2-.15-.23A6 6 0 119 14.9zm3.3-4.5c-.18-.09-1.06-.52-1.22-.58s-.28-.09-.4.09-.46.58-.56.7-.2.13-.38.04a4.8 4.8 0 01-1.42-.88 5.3 5.3 0 01-1-1.24c-.1-.18 0-.27.08-.36s.18-.2.27-.3.13-.18.2-.3.02-.22-.02-.3-.4-.97-.55-1.33-.15-.35-.27-.3-.2 0-.34 0l-.46.01a.9.9 0 00-.66.3 3.4 3.4 0 00-1.06 2.5 5.9 5.9 0 001.24 3.1 13.5 13.5 0 005.2 4.6c.73.31 1.3.5 1.74.64a3.2 3.2 0 001.47.1c.45-.07 1.38-.56 1.58-1.1s.2-1 .14-1.1-.18-.13-.38-.23z" />
-    </svg>
   );
 }

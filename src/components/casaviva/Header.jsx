@@ -42,7 +42,7 @@ export default function Header() {
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 h-20 flex items-center justify-between">
           <a href="#topo" className="flex items-center gap-2.5 group" aria-label="CASA VIVA">
-            <ArchMark className="w-7 h-7 text-terracotta" />
+            <img src="https://res.cloudinary.com/xiupvhfs/image/upload/v1790775733/2026-09-30_10-40-removebg-preview.png" alt="" className="w-12 h-12"/>
             <span className={`font-display text-xl tracking-tight ${scrolled ? "text-ink" : "text-ink-inverse"}`} style={{ fontWeight: 500 }}>
               casa viva
             </span>

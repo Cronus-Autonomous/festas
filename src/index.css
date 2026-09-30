@@ -120,15 +120,15 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    border: 1px solid var(--whatsapp);
-    color: var(--whatsapp);
+    border: 1px solid #fff;
+    color: #fff;
     padding: 13px 24px;
     border-radius: 999px;
     font-weight: 600;
     font-size: 0.95rem;
     transition: background 250ms, color 250ms;
   }
-  .btn-wa:hover { background: var(--whatsapp); color: #fff; }
+  .btn-wa:hover { background: var(--whatsapp); color: #fff; border: 1px solid var(--whatsapp) }
 
   .link-editorial {
     position: relative;

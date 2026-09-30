@@ -21,7 +21,6 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <nav className="flex flex-col gap-3" aria-label="Rodapé">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="link-editorial text-ink-soft">Instagram</a>
-              <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="link-editorial text-ink-soft">WhatsApp</a>
               <a href="#contato" className="link-editorial text-ink-soft">Mapa</a>
               <a href="#" className="link-editorial text-ink-soft">Política de privacidade</a>
             </nav>
